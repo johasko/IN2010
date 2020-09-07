@@ -1,0 +1,23 @@
+
+Teste program med BalanceChecker:
+#############################################################
+$ seq 20 | java BalanceArray | java BalanceChecker
+#############################################################
+
+Om programmet fungerer bør man få følgende utskrift:
+#############################################################
+Dette treet ser balansert ut!
+#############################################################
+
+Om programmet IKKE fungerer bør man få følgende:
+#############################################################
+$ seq 20 | java BalanceArray | java BalanceChecker
+Dette treet ser ikke helt balansert ut... prøv igjen!
+#############################################################
+
+Programmet bør fungere helt likt for oppgave (a) og (b).
+Altså kan du også kjøre følgende:
+#############################################################
+$ seq 20 | java BalanceHeap | java BalanceChecker
+Dette treet ser balansert ut!
+#############################################################
