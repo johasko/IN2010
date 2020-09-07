@@ -1,0 +1,23 @@
+
+Kjøre tester fra /inputs-mappen:
+############################################################
+$ javac *.java
+$ java Teque < inputs/eksempel_input
+3
+5
+9
+5
+1
+#############################################################
+
+Teste større eksempler:
+#############################################################
+$ java Teque < inputs/input_100 | cmp - outputs/output_100
+#############################################################
+
+Dersom ingenting skjer passerer testen.
+Dersom det er noe galt vil du få en utskrift som ser slik ut:
+#############################################################
+$ java Teque < inputs/input_100 | cmp - outputs/output_100
+- outputs/output_100 differ: char 1, line 1
+#############################################################
