@@ -30,15 +30,15 @@ class Teque {
         }
     }
 
-    public static void push_front(int i) {
-        tall.add(0, i);
+    public static void push_front(int x) {
+        tall.add(0, x);
     }
 
-    public static void push_back(int i){
-        tall.add(i);
+    public static void push_back(int x){
+        tall.add(x);
     }
-    public static void push_middle(int i){
-        tall.add(((tall.size()+1)/2), i);
+    public static void push_middle(int x){
+        tall.add(((tall.size()+1)/2), x);
     }
     public static void get(int i){
         System.out.println(tall.get(i));
