@@ -1,15 +1,22 @@
 //Reservefil om vi vil skrive direkte i git, og kopiere over før levering.
 //Konverteres evt. til .pdf før levering.
 
+Oppg. 1b)
+
 Kjøretiden til "push_front()" vil worst case være O(n). Dette er fordi innsetting på indeks 0 krever at alle andre elementer i listen flyttes ett steg lenger frem, 
 f.eks. [0]<-[1], [1]<-[2] osv. Derfor vil kjøretiden avhenge av hvor mange elementer listen inneholder.
 
 Kjøretid til "push_back()" vil være  O(1). Her aksesserer vi bakerste indeks, og setter inn det nye elementet på indeksen etter dette. Vi trenger ikke iterere gjennom hele
 listen, og tiden vil derfor være uavhengig av antall elementer.
 
-Kjøretid for "push_middle()" vil være  O(n). Dette fordi vi aksesserer midterste indeks, setter inn det nye elemeentet, og forskyver alt etter dette en plass lenger 
+Kjøretid for "push_middle()" vil være  O(n). Dette fordi vi aksesserer midterste indeks, setter inn det nye elementet, og forskyver alt etter dette en plass lenger 
 bak, som i push_front(). Kjøretiden vil da bli O(1/2n), som forkortes til O(n).
 
 Kjøretiden til get() er O(1). Her vet vi hvilken indeks elementet vi skal hente ut ligger på, og kan gå rett til denne plassen. 
 Derfor er ikke kjøretiden avhengig av hvor mange elementer listen inneholder, og vi får konstant tid. 
 
+Oppg. 1c)
+
+Om vi vet at N er begrenset, vil vi kunne utelukke alle utfall > n. Noen algoritmer er raske på kort sikt, men treigere på langsikt. Om man har et begrenset område å se på
+N innenfor, vil valget av algoritme kunne være annerledes enn om vi skulle tatt hensyn til en uendelig stor N. Dette fordi vi slipper å ta hensyn til N større enn begrensningen,
+og dermed har et mer nøyaktig bilde å gå ut ifra. 
