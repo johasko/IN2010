@@ -20,3 +20,8 @@ Oppg. 1c)
 Om vi vet at N er begrenset, vil vi kunne utelukke alle utfall > n. Noen algoritmer er raske på kort sikt, men treigere på langsikt. Om man har et begrenset område å se på
 N innenfor, vil valget av algoritme kunne være annerledes enn om vi skulle tatt hensyn til en uendelig stor N. Dette fordi vi slipper å ta hensyn til N større enn begrensningen,
 og dermed har et mer nøyaktig bilde å gå ut ifra. 
+
+Oppg. 2)
+
+Kjøretiden for algoritmen er O(log2(n)). Dette er fordi hvert steg i algoritmen fører til en halvvering av søkeområdet, og dermed en halvvering av økt kjøretid for hvert element
+som ikke er det du leter etter. Utviklingen for kjøretidskompleksiteten er n, n/2, n/4, n/8 osv.  
