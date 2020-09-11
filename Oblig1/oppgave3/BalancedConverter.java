@@ -8,17 +8,17 @@ class BalancedConverter {
     static int mid;
 
     public BalancedConverter(ArrayList<Integer> sorted) {
-
+        this.sorted = sorted;
     }
 
     public ArrayList<Integer> convert() {
         int max = sorted.size()-1;
         int min = 0;
-        mid = ((max + min) + 1)/2
+        mid = ((max + min) + 1)/2;
 
-        balanced.add(sorted[mid]);
+        balanced.add(sorted.get(mid));
 
-        if (sorted.size == 2) {
+        if (sorted.size() == 2) {
             balanced = sorted;
         }
         if (max - mid <= 2 || mid - min <= 2) {
@@ -33,43 +33,43 @@ class BalancedConverter {
 
     private void checkHigh(int curMid, int max) {
         if (curMid == max) {
-            balanced.add(sorted[max]);
+            balanced.add(sorted.get(max));
             return;
         }
         if (max - curMid < 2) {
-            balanced.add(sorted[curMid]);
-            balanced.add(sorted[max]);
+            balanced.add(sorted.get(curMid));
+            balanced.add(sorted.get(max));
             return;
         }
         if (max - curMid == 2) {
-            balanced.add(sorted[curMid]);
-            balanced.add(sorted[max]);
-            balanced.add(sorted[max-1]);
+            balanced.add(sorted.get(curMid));
+            balanced.add(sorted.get(max));
+            balanced.add(sorted.get(max-1));
             return;
         }
         int newMid = ((max + curMid) + 1)/2;
         balanced.add(newMid);
 
-        checkHigh(newMid, max)
-        checkHigh(curMid, mid)
+        checkHigh(newMid, max);
+        checkHigh(curMid, mid);
 
         return;
     }
 
-    private void checkLow(ing curMid, int min) {
+    private void checkLow(int curMid, int min) {
         if (curMid == min) {
-            balanced.add(sorted[min]);
+            balanced.add(sorted.get(min));
             return;
         }
         if (min - curMid < 2) {
-            balanced.add(sorted[curMid]);
-            balanced.add(sorted[min]);
+            balanced.add(sorted.get(curMid));
+            balanced.add(sorted.get(min));
             return;
         }
         if (min - curMid == 2) {
-            balanced.add(sorted[curMid]);
-            balanced.add(sorted[min]);
-            balanced.add(sorted[min+1]);
+            balanced.add(sorted.get(curMid));
+            balanced.add(sorted.get(min));
+            balanced.add(sorted.get(min+1));
             return;
         }
 
