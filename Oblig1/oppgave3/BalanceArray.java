@@ -6,12 +6,12 @@ class BalanceArray {
         ArrayList<Integer> sorted = new ArrayList<>();
         ArrayList<Integer> balanced = new ArrayList<>();
 
-        for (int i = 0; i <= 20; i++) {
+        for (int i = 0; i <= 10; i++) {
             sorted.add(i);
         }
 
         balanced = new BalancedConverter(sorted).convert();
-        for (int i : sorted) {
+        for (int i : balanced) {
             System.out.println(i);
         }
     }

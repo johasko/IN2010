@@ -32,6 +32,8 @@ class BalancedConverter {
     }
 
     private void checkHigh(int curMid, int max) {
+        int newMid = ((max + curMid) + 1)/2;
+
         if (curMid == max) {
             balanced.add(sorted.get(max));
             return;
@@ -47,7 +49,7 @@ class BalancedConverter {
             balanced.add(sorted.get(max-1));
             return;
         }
-        int newMid = ((max + curMid) + 1)/2;
+
         balanced.add(newMid);
 
         checkHigh(newMid, max);
@@ -57,6 +59,8 @@ class BalancedConverter {
     }
 
     private void checkLow(int curMid, int min) {
+        int newMid = ((curMid + min) - 1)/2;
+
         if (curMid == min) {
             balanced.add(sorted.get(min));
             return;
@@ -73,7 +77,6 @@ class BalancedConverter {
             return;
         }
 
-        int newMid = ((curMid + min) - 1)/2;
         balanced.add(newMid);
         checkLow(newMid, min);
         checkHigh(curMid, mid);
