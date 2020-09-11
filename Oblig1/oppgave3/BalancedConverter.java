@@ -21,7 +21,7 @@ class BalancedConverter {
         if (sorted.size() == 2) {
             balanced = sorted;
         }
-        if (max - mid <= 2 || mid - min <= 2) {
+        if (sorted.size()<= 5) {
             //legg til indekser
         }
         checkHigh((mid+1), max);
@@ -51,7 +51,7 @@ class BalancedConverter {
         balanced.add(newMid);
 
         checkHigh(newMid, max);
-        checkHigh(curMid, mid);
+        checkLow(curMid, mid);
 
         return;
     }
