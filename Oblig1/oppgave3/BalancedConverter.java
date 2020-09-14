@@ -67,12 +67,12 @@ class BalancedConverter {
             balanced.add(sorted.get(min));
             return;
         }
-        if (curMid - min < 2) {
+        if (curMid == 1) {
             balanced.add(sorted.get(curMid));
             balanced.add(sorted.get(min));
             return;
         }
-        if (curMid - min == 2) {
+        if (curMid == 2) {
             balanced.add(sorted.get(min));
             balanced.add(sorted.get(min+1));
             return;
