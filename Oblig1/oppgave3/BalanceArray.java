@@ -28,7 +28,7 @@ class BalancedConverter {
         }
 
         int mid = (first+last)/2;
-        System.out.println(mid);
+        System.out.println(arr.get(mid));
 
         convert(arr, mid + 1, last);
         convert(arr, first, mid - 1);
