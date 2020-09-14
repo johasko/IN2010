@@ -14,7 +14,7 @@ class BalanceArray {
             sorted.add(Integer.parseInt(line));
         }
 
-        new BalancedConverter().convert(sorted, 0, sorted.size() - 1);
+        new BalancedConverter().convert(sorted, 0, sorted.size());
     }
 }
 
