@@ -1,3 +1,5 @@
+import java.lang.*;
+
 import java.util.ArrayList;
 
 class BalancedConverter {
@@ -44,7 +46,6 @@ class BalancedConverter {
             return;
         }
         if (max - curMid == 2) {
-            balanced.add(sorted.get(curMid));
             balanced.add(sorted.get(max));
             balanced.add(sorted.get(max-1));
             return;
@@ -53,32 +54,34 @@ class BalancedConverter {
         balanced.add(newMid);
 
         checkHigh(newMid, max);
-        checkLow(curMid, mid);
+        curMid = newMid;
+        checkLow(curMid, mid+1);
 
         return;
     }
 
     private void checkLow(int curMid, int min) {
-        int newMid = ((curMid + min) - 1)/2;
+        int newMid = ((curMid + min) + 1)/2;
 
         if (curMid == min) {
             balanced.add(sorted.get(min));
             return;
         }
-        if (min - curMid < 2) {
+        if (curMid - min < 2) {
             balanced.add(sorted.get(curMid));
             balanced.add(sorted.get(min));
             return;
         }
-        if (min - curMid == 2) {
-            balanced.add(sorted.get(curMid));
+        if (curMid - min == 2) {
             balanced.add(sorted.get(min));
             balanced.add(sorted.get(min+1));
             return;
         }
 
         balanced.add(newMid);
+
         checkLow(newMid, min);
+        curMid = newMid;
         checkHigh(curMid, mid);
 
         return;
