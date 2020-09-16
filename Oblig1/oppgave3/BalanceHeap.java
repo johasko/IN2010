@@ -26,9 +26,6 @@ class HeapConverter {
         PriorityQueue<Integer> lpq = new PriorityQueue<Integer>(); //Lave enden av lista
         PriorityQueue<Integer> hpq; // Hoye enden av lista
 
-        int mid1;
-        int mid2;
-
         int l = pq.size();
         for (int i = 0; i < l/2; i++) {
             int t = (Integer)pq.poll();
@@ -38,17 +35,14 @@ class HeapConverter {
         hpq = pq;
 
         if (hpq.size() > 0 || lpq.size() > 0) {
-            mid1 = hpq.poll();
-            System.out.println(mid1);
+            System.out.println(hpq.poll());
 
             convert(hpq);
             convert(lpq);
         }
         else if (hpq.size() == 2 || lpq.size() == 2) {
-            mid1 = hpq.poll();
-            mid2 = hpq.poll();
-            System.out.println(mid1);
-            System.out.println(mid2);
+            System.out.println(hpq.poll());
+            System.out.println(hpq.poll());
 
             return;
         }
