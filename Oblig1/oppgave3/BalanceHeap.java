@@ -8,35 +8,51 @@ class BalanceHeap {
 
     public static void main(String[] args) throws IOException {
 
-        PriorityQueue pq = new PriorityQueue<Integer>();
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         for (String line = br.readLine(); line != null; line = br.readLine()) {
             pq.offer(Integer.parseInt(line));
         }
 
-        int s = pq.size();
-        for (int i = 0; i < s; i++) {
-            System.out.println(pq.poll());
-        }
+        new HeapConverter().convert(pq);
     }
 }
 
 
-class BalancedConverter {
+class HeapConverter {
 
-    public void convert(ArrayList<Integer> arr, int first, int last) {
+    public void convert(PriorityQueue pq) {
 
-        if (first > last) {
-            return;
+        PriorityQueue<Integer> lpq = new PriorityQueue<Integer>(); //Lave enden av lista
+        PriorityQueue<Integer> hpq; // Hoye enden av lista
+
+        int mid1;
+        int mid2;
+
+        int l = pq.size();
+        for (int i = 0; i < l/2; i++) {
+            int t = (Integer)pq.poll();
+            lpq.offer(t);
         }
 
-        int mid = (first+last)/2;
-        System.out.println(arr.get(mid));
+        hpq = pq;
 
-        convert(arr, mid + 1, last);
-        convert(arr, first, mid - 1);
+        if (hpq.size() > 0 || lpq.size() > 0) {
+            mid1 = hpq.poll();
+            System.out.println(mid1);
 
+            convert(hpq);
+            convert(lpq);
+        }
+        else if (hpq.size() == 2 || lpq.size() == 2) {
+            mid1 = hpq.poll();
+            mid2 = hpq.poll();
+            System.out.println(mid1);
+            System.out.println(mid2);
+
+            return;
+        }
         return;
     }
 }
