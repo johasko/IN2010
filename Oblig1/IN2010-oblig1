@@ -17,11 +17,12 @@ Derfor er ikke kjøretiden avhengig av hvor mange elementer listen inneholder, o
 
 Oppg. 1c)
 
-Om vi vet at N er begrenset, vil vi kunne utelukke alle utfall > n. Noen algoritmer er raske på kort sikt, men treigere på langsikt. Om man har et begrenset område å se på
+Om vi vet at N er begrenset, vil vi kunne utelukke alle utfall > n. Noen algoritmer er raske på kort sikt, men tregere på lang sikt. Om man har et begrenset område å se på
 N innenfor, vil valget av algoritme kunne være annerledes enn om vi skulle tatt hensyn til en uendelig stor N. Dette fordi vi slipper å ta hensyn til N større enn begrensningen,
-og dermed har et mer nøyaktig bilde å gå ut ifra. 
+og dermed har et mer nøyaktig bilde å gå ut ifra. Det kan også påvirke valget av beholder for dataene. Et binærtre har for eksempel kjøretid O(log2(n)), mens en lenket liste har kjøretid O(n) på henting av data. Dermed vil en gitt mengde n kunne gjøre det gunstig å velge lenket liste til oppbevaring fremfor et binærtre. I motsatt fall, med en høyere kjent n, vil det kunne være vesentlig raskere å velge et binærtre til lagring.
 
 Oppg. 2)
 
-Kjøretiden for algoritmen er O(log2(n)). Dette er fordi hvert steg i algoritmen fører til en halvvering av søkeområdet, og dermed en halvvering av økt kjøretid for hvert element
-som ikke er det du leter etter. Utviklingen for kjøretidskompleksiteten er n, n/2, n/4, n/8 osv.  
+I utgangspunktet vil kjøretiden for en binærsøk-algoritme være O(log2(n)). Dette er fordi hvert steg i algoritmen fører til en halvering av søkeområdet, og dermed en halvering av økt kjøretid for hvert element som ikke er det du leter etter. Utviklingen for kjøretidskompleksiteten vil være n, n/2, n/4, n/8 osv. Kjøretiden i algoritmen vi har her vil imidlertid være O(n), siden get() i lenkelister ikke kan slå opp på indekser på samme måte som for eksempel Arrays, og derfor må gå gjennom hvert element for å komme til ønsket indeks. Dermed blir worst-case estimatet for binærsøk med lenkede lister O(n). 
+
+Om man heller velger en annen datastruktur, for eksempel Array eller ArrayList, vil get() ha kjøretid O(1). Dermed vil binærsøkets O(log2(n)) være "tregeste" operasjon, og kjøretiden for algoritmen blir O(log2(n)), fremfor lenkelistens O(n).
