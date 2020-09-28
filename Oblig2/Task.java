@@ -5,11 +5,15 @@ class Task {
     int[] outEdges;
     int cntPredecessors;
 
-    public Task(int id, int t, int s, String n, int[] ed) {
+    public Task(int id, String n, int t, int s, int[] ed) {
         this.id = id;
+        name = n;
         time = t;
         staff = s;
-        name = n;
         outEdges = ed;
+    }
+
+    public String toString() {
+        return "Id: " + id + "\\nName: " + name + "\\nTime requirement: " + time + "\\nStaff requirement: " + staff + "\\nOutEdges: " + outEdges;
     }
 }
