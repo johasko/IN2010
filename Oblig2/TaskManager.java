@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.*;
 
 class TaskManager {
 
@@ -21,6 +21,7 @@ class TaskManager {
                 String name = bits[1];
                 int time = Integer.parseInt(bits[2]);
                 int staff = Integer.parseInt(bits[3]);
+
                 int[] ed = new int[bits.length-3];
                 for (int i = 3; i < bits.length; i++) {
                     int n = Integer.parseInt(bits[i]);

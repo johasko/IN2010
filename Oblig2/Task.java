@@ -1,3 +1,5 @@
+import java.util.*;
+
 class Task {
     int id, time, staff;
     String name;
@@ -14,6 +16,14 @@ class Task {
     }
 
     public String toString() {
-        return "Id: " + id + "\nName: " + name + "\nTime requirement: " + time + "\nStaff requirement: " + staff + "\nOutEdges: " + outEdges + "\n";
+        return "Id: " + id + "\nName: " + name + "\nTime requirement: " + time + "\nStaff requirement: " + staff + "\nOutEdges: " + arrayToString(outEdges) + "\n";
+    }
+
+    public String arrayToString(int[] array) {
+        String s = "";
+        for (int e : array) {
+            s += (e + ", ");
+        }
+        return s;
     }
 }
