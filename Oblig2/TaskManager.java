@@ -7,7 +7,8 @@ class TaskManager {
 
     public static void main(String[] args) throws IOException {
         int tasks;
-        ArrayList<Task> allTasks = new ArrayList<Task>();
+        ArrayList<Task> allTasks = new ArrayList<>();
+
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -33,9 +34,33 @@ class TaskManager {
             }
         }
 
+        runTasks(allTasks);
+
         //Test print
         for (Task t : allTasks) {
             System.out.println(t);
+        }
+    }
+
+    public void runTasks(ArrayList<Task> allTasks) {
+
+        ArrayList<Task> queue = new ArrayList<>();
+
+        for (Task t : allTasks) {
+            if (t.outEdges.lenght == 0) {
+                //Kjor oppgave
+            }
+
+            for (int i : t.outEdges) {
+                if (i.status == false) {
+                    queue.add(t);
+                    break;
+                }
+            }
+        }
+
+        while(queue.size() > 0) {
+            runTasks(queue);
         }
     }
 }
