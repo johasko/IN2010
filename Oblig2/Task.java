@@ -6,6 +6,7 @@ class Task {
     int earliestStart, latestStart;
     int[] outEdges;
     int cntPredecessors;
+    boolean status = false;
 
     public Task(int id, String n, int t, int s, int[] ed) {
         this.id = id;
