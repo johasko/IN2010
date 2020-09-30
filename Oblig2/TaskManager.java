@@ -48,7 +48,8 @@ class TaskManager {
 
         for (Task t : allTasks) {
             if (t.outEdges.lenght == 0) {
-                //Kjor oppgave
+                t.status = true;
+                //Print kjøretid + annen info
             }
 
             for (int i : t.outEdges) {
