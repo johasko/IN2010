@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 class TaskManager {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         int tasks;
         ArrayList<Task> allTasks = new ArrayList<Task>();
 
@@ -14,16 +14,17 @@ class TaskManager {
         tasks = Integer.parseInt(br.readLine());
 
         for (String line = br.readLine(); line != null; line = br.readLine()) {
-            if (line.length() > 2) {
+            if (line.length() > 0) {
                 String[] bits = line.split("\\s+");
 
                 int id = Integer.parseInt(bits[0]);
                 String name = bits[1];
                 int time = Integer.parseInt(bits[2]);
                 int staff = Integer.parseInt(bits[3]);
-                int[] ed = new int[bits.length-4];
+                int[] ed = new int[bits.length-3];
                 for (int i = 3; i < bits.length; i++) {
-                    //Hente ut de siste bitene i bits og sette det i ed
+                    int n = Integer.parseInt(bits[i]);
+                    ed[i-3] = n;
                 }
 
                 Task task = new Task(id, name, time, staff, ed);

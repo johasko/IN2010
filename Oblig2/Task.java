@@ -14,6 +14,6 @@ class Task {
     }
 
     public String toString() {
-        return "Id: " + id + "\\nName: " + name + "\\nTime requirement: " + time + "\\nStaff requirement: " + staff + "\\nOutEdges: " + outEdges;
+        return "Id: " + id + "\nName: " + name + "\nTime requirement: " + time + "\nStaff requirement: " + staff + "\nOutEdges: " + outEdges + "\n";
     }
 }
