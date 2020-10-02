@@ -47,13 +47,13 @@ class TaskManager {
         ArrayList<Task> queue = new ArrayList<>();
 
         for (Task t : allTasks) {
-            if (t.outEdges.lenght > 1) {
+            if (t.outEdges.length == 1) {
                 t.status = true;
                 //Print kjøretid + annen info
             }
 
             for (int i : t.outEdges) {
-                if (i.status == false) {
+                if (allTasks.get(i).status == false) {
                     queue.add(t);
                     break;
                 }
