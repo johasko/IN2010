@@ -60,7 +60,7 @@ class TaskManager {
             }
         }
 
-        while(queue.size() > 0 && queue.size() < 20) {
+        while(queue.size() > 0 && queue.size() < 10) {
             runTasks(queue);
         }
     }
