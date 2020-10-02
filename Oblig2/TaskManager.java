@@ -34,12 +34,12 @@ class TaskManager {
             }
         }
 
-        runTasks(allTasks);
-
-        //Test print
+        //Print all tasks
         for (Task t : allTasks) {
             System.out.println(t);
         }
+
+        runTasks(allTasks);
     }
 
     public void runTasks(ArrayList<Task> allTasks) {
