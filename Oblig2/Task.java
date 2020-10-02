@@ -23,7 +23,7 @@ class Task {
     public String arrayToString(int[] array) {
         String s = "";
         for (int e : array) {
-            s += (e + ", ");
+            s += (e + " ");
         }
         return s;
     }
