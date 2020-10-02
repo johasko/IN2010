@@ -42,7 +42,7 @@ class TaskManager {
         runTasks(allTasks);
     }
 
-    public void runTasks(ArrayList<Task> allTasks) {
+    public static void runTasks(ArrayList<Task> allTasks) {
 
         ArrayList<Task> queue = new ArrayList<>();
 
