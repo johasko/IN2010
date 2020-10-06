@@ -20,16 +20,17 @@ class Task {
         outEdges.add(t);
     }
 
-    public int earlyStart(int i) {
-        if(outEdges.size()==0) {
-            return 0;
+    public int earlyStart(Task[] tasks) { //Dette er Dijktras algoritme
+        PriorityQueue<Task> pq = new PriorityQueue<>();
+
+        for (Task t : tasks) {
+            t.earliestStart = Integer.MAX_VALUE;
+            pq.add(t);
         }
-        for (Task v : outEdges) {
-            if (v.time > i) {
-                i += v.earlyStart(i);
-            } else {
-                return i;
-            }
+        tasks[0].earliestStart = 0;
+
+        while (pq.size() < 0) {
+            Task v = pr.poll();
         }
     }
 }
