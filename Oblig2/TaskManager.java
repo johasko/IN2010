@@ -36,4 +36,10 @@ class TaskManager {
             System.out.println(t);
         }
     }
+
+    public static void realizable(Task[] t) {
+        
+    }
+
+
 }
