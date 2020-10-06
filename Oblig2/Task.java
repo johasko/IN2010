@@ -19,4 +19,17 @@ class Task {
     public void addEdge(Task t) {
         outEdges.add(t);
     }
+
+    public int earlyStart(int i) {
+        if(outEdges.size()==0) {
+            return 0;
+        }
+        for (Task v : outEdges) {
+            if (v.time > i) {
+                i += v.earlyStart(i);
+            } else {
+                return i;
+            }
+        }
+    }
 }
