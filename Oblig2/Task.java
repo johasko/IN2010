@@ -14,6 +14,7 @@ class Task {
         time = t;
         staff = s;
         outEdges = ed;
+        cntPredecessors = ed.length;
     }
 
     public String toString() {
@@ -23,7 +24,13 @@ class Task {
     public String arrayToString(int[] array) {
         String s = "";
         for (int e : array) {
-            s += (e + " ");
+            if (s.length() == 0) {
+                s += e;
+            }
+            else {
+                s += (", " + e);
+            }
+
         }
         return s;
     }

@@ -23,10 +23,10 @@ class TaskManager {
                 int time = Integer.parseInt(bits[2]);
                 int staff = Integer.parseInt(bits[3]);
 
-                int[] ed = new int[bits.length-3];
-                for (int i = 3; i < bits.length; i++) {
+                int[] ed = new int[bits.length-4];
+                for (int i = 4; i < bits.length; i++) {
                     int n = Integer.parseInt(bits[i]);
-                    ed[i-3] = n;
+                    ed[i-4] = n;
                 }
 
                 Task task = new Task(id, name, time, staff, ed);
@@ -35,32 +35,34 @@ class TaskManager {
         }
 
         //Print all tasks
-        for (Task t : allTasks) {
+        /*for (Task t : allTasks) {
             System.out.println(t);
-        }
+        }*/
 
         runTasks(allTasks);
     }
 
-    public static void runTasks(ArrayList<Task> allTasks) {
+    public static void runTasks(ArrayList<Task> tasks) {
 
         ArrayList<Task> queue = new ArrayList<>();
-
-        for (Task t : allTasks) {
-            if (t.outEdges.length == 1) {
+        int o = 0;
+        for (Task t : tasks) {
+            if (t.cntPredecessors == 1) {
                 t.status = true;
+                System.out.println("Starting: " + t.name);
                 //Print kjøretid + annen info
             }
 
             for (int i : t.outEdges) {
-                if (allTasks.get(i).status == false) {
+                if (tasks.get(i).status == false) {
                     queue.add(t);
                     break;
                 }
             }
+            o++;
         }
 
-        while(queue.size() > 0 && queue.size() < 10) {
+        if (tasks.size() > 0) {
             runTasks(queue);
         }
     }
