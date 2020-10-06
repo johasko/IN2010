@@ -1,69 +1,35 @@
+import java.io.File;
 import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.*;
+import java.util.Scanner;
 
-class TaskManager {
+class Oblig2 {
 
     public static void main(String[] args) throws IOException {
-        int tasks;
-        ArrayList<Task> allTasks = new ArrayList<>();
+        String filename = args[0];
+        Scanner in = new Scanner(new File(filename));
 
+        int n = in.nextInt();
+        Task[] tasks = new Task[n];
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        tasks = Integer.parseInt(br.readLine());
-
-        for (String line = br.readLine(); line != null; line = br.readLine()) {
-            if (line.length() > 0) {
-                String[] bits = line.split("\\s+");
-
-                int id = Integer.parseInt(bits[0]);
-                String name = bits[1];
-                int time = Integer.parseInt(bits[2]);
-                int staff = Integer.parseInt(bits[3]);
-
-                int[] ed = new int[bits.length-4];
-                for (int i = 4; i < bits.length; i++) {
-                    int n = Integer.parseInt(bits[i]);
-                    ed[i-4] = n;
-                }
-
-                Task task = new Task(id, name, time, staff, ed);
-                allTasks.add(task);
-            }
+        for (int i = 0; i < n; i++) {
+            tasks[i] = new Task(i + 1);
         }
 
-        //Print all tasks
-        /*for (Task t : allTasks) {
-            System.out.println(t);
-        }*/
+        for (int i = 0; i < n; i++) {
+            int id = in.nextInt();
+            Task task = tasks[id - 1];
+            task.name = in.next();
+            task.time = in.nextInt();
+            task.staff = in.nextInt();
 
-        runTasks(allTasks);
-    }
-
-    public static void runTasks(ArrayList<Task> tasks) {
-
-        ArrayList<Task> queue = new ArrayList<>();
-        int o = 0;
-        for (Task t : tasks) {
-            if (t.cntPredecessors == 1) {
-                t.status = true;
-                System.out.println("Starting: " + t.name);
-                //Print kjøretid + annen info
-            }
-
-            for (int i : t.outEdges) {
-                if (tasks.get(i).status == false) {
-                    queue.add(t);
+            while (true) {
+                int dep = in.nextInt();
+                if (dep == 0) {
                     break;
                 }
+                tasks[dep - 1].addEdge(task);
+                tasks[id - 1].cntPredecessors++;
             }
-            o++;
-        }
-
-        if (tasks.size() > 0) {
-            runTasks(queue);
         }
     }
 }
