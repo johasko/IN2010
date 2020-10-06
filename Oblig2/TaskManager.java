@@ -41,12 +41,12 @@ class TaskManager {
                 System.out.println(t.name);
             }
         }
+
+        System.out.println();
         /*for (Task t : tasks) {
             System.out.println(t);
         }*/
     }
-
-
 
     public static Task[] realizable(Task[] g) {
         Stack<Task> s = new Stack<>();
@@ -73,5 +73,12 @@ class TaskManager {
             return output;
         }
         return null;
+    }
+
+    public static int earlyStart(Task t) {
+
+        for (Task v : t.outEdges) {
+            return v.time;
+        }
     }
 }
