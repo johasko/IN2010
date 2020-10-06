@@ -31,5 +31,9 @@ class TaskManager {
                 tasks[id - 1].cntPredecessors++;
             }
         }
+
+        for (Task t : tasks) {
+            System.out.println(t);
+        }
     }
 }
