@@ -37,9 +37,20 @@ class TaskManager {
         }
     }
 
-    public static void realizable(Task[] t) {
-        
+    public boolean DFS(Task[] a, Task t) { 
+        t.status = true;
+        for (Task v : t.outEdges) {
+            if (v.status == false) {
+                DFS(a, v); 
+            }
+        }
     }
 
-
+    public boolean DFS_full(Task[] a) {
+        for (Task v : a) {
+            if (v.status == false) {
+                DFS(a, v);
+            }
+        }
+    }
 }
