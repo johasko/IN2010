@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-class Oblig2 {
+class TaskManager {
 
     public static void main(String[] args) throws IOException {
         String filename = args[0];
