@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.*;
 
 class TaskManager {
 
@@ -32,8 +33,45 @@ class TaskManager {
             }
         }
 
-        for (Task t : tasks) {
-            System.out.println(t);
+        Task[] sykel = realizable(tasks);
+        if (sykel == null) {
+            System.out.println("Grafen er en sykel");
+        } else {
+            for (Task t : sykel) {
+                System.out.println(t.name);
+            }
         }
+        /*for (Task t : tasks) {
+            System.out.println(t);
+        }*/
+    }
+
+
+
+    public static Task[] realizable(Task[] g) {
+        Stack<Task> s = new Stack<>();
+        Task[] output = new Task[g.length];
+
+        for (Task t : g) {
+            if (t.cntPredecessors == 0) {
+                s.push(t);
+            }
+        }
+        int i =1;
+        while (!s.empty()) {
+            Task v = s.pop();
+            output[i-1] = v;
+            i++;
+            for (Task e : v.outEdges) {
+                e.cntPredecessors--;
+                if (e.cntPredecessors == 0) {
+                    s.push(e);
+                }
+            }
+        }
+        if (i > g.length) {
+            return output;
+        }
+        return null;
     }
 }
