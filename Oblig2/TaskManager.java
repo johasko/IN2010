@@ -48,7 +48,7 @@ class TaskManager {
         }*/
     }
 
-    public static Task[] realizable(Task[] g) {
+    public static Task[] realizable(Task[] g) { //Topologisk sortering
         Stack<Task> s = new Stack<>();
         Task[] output = new Task[g.length];
 
