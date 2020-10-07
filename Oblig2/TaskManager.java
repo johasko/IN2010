@@ -82,9 +82,8 @@ class TaskManager {
 
         for (Task i : task) {
             for (Task j : i.outEdges) {
-                int time = i.earliestStart+i.time;
-                if (time < j.earliestStart) {
-                    j.earliestStart = time;
+                if (i.earliestStart+i.time < j.earliestStart) {
+                    j.earliestStart = i.earliestStart+i.time;
                 }
             }
         }
