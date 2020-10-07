@@ -33,16 +33,17 @@ class TaskManager {
             }
         }
 
-        earlyStart(realizable(tasks));
+        //earlyStart(realizable(tasks));
 
-        /*Task[] sykel = realizable(tasks);
+        Task[] sykel = realizable(tasks);
         if (sykel == null) {
             System.out.println("Grafen er en sykel");
         } else {
             for (Task t : sykel) {
-                System.out.println(t.name);
+                System.out.println(t.name + " " + t.cntPredecessors);
             }
-        }*/
+        }
+        earlyStart(sykel);
 
     }
 
@@ -88,9 +89,15 @@ class TaskManager {
             }
         }
 
-        System.out.println("-----------------------------");
+        for (Task t : task){
+            System.out.println("-----------------------------");
+            System.out.println("Korteste vei fra start til " + t.id + " er: " +
+                                t.earliestStart);
+        }
+
+        /*System.out.println("-----------------------------");
         System.out.println("Korteste vei fra start til slutt er: " +
-                            task[task.length-1].earliestStart);
+                            task[task.length-1].earliestStart);*/
     }
 
     /*public static void utskrift() {
