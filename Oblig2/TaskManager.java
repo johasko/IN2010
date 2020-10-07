@@ -89,17 +89,6 @@ class TaskManager {
             }
         }
 
-
-        for (Task j : task) {
-            System.out.println("Tidligste start for " +
-                                j.name + " er " +
-                                j.earliestStart);
-            for (Task i : j.outEdges) {
-                System.out.println("        Tidligste start for " +
-                                    i.name + " er " +
-                                    i.earliestStart);
-            }
-        }
         System.out.println("-----------------------------");
         System.out.println("Korteste vei fra start til slutt er: " +
                             task[task.length-1].earliestStart);
