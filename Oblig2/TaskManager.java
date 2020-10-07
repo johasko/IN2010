@@ -93,4 +93,9 @@ class TaskManager {
         System.out.println("Korteste vei fra start til slutt er: " +
                             task[task.length-1].earliestStart);
     }
+
+    /*public static void utskrift() {
+
+        System.out.println("Time: " + time);
+    }*/
 }
