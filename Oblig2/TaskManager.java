@@ -33,19 +33,20 @@ class TaskManager {
             }
         }
 
-        Task[] sykel = realizable(tasks);
+        earlyStart(realizable(tasks));
+
+        /*Task[] sykel = realizable(tasks);
         if (sykel == null) {
             System.out.println("Grafen er en sykel");
         } else {
             for (Task t : sykel) {
                 System.out.println(t.name);
             }
-        }
+        }*/
 
         System.out.println();
-        /*for (Task t : tasks) {
-            System.out.println(t);
-        }*/
+        System.out.println();
+
     }
 
     public static Task[] realizable(Task[] g) { //Topologisk sortering
@@ -75,10 +76,29 @@ class TaskManager {
         return null;
     }
 
-    public static int earlyStart(Task t) {
+    public static void earlyStart(Task[] task) {
 
-        for (Task v : t.outEdges) {
-            return v.time;
+        for (Task v : task) {
+            v.earliestStart = Integer.MAX_VALUE;
         }
+        task[0].earliestStart = 0;
+
+        for (Task i : task) {
+            for (Task j : i.outEdges) {
+                int time = i.time+j.time;
+                if (time < j.earliestStart) {
+                    j.earliestStart = time;
+                }
+            }
+        }
+        for (Task j : task) {
+            System.out.println("Tidligste start for " +
+                                j.name + " er " +
+                                j.earliestStart);
+        }
+
+        System.out.println("-----------------------------");
+        System.out.println("Korteste vei fra start til slutt er: " +
+                            task[task.length-1].earliestStart);
     }
 }
