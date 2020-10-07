@@ -20,7 +20,7 @@ class Task {
         outEdges.add(t);
     }
 
-    public int earlyStart(Task[] tasks) { //Dette er Dijktras algoritme
+    /*public int earlyStart(Task[] tasks) { //Dette er Dijktras algoritme
         PriorityQueue<Task> pq = new PriorityQueue<>();
 
         for (Task t : tasks) {
@@ -32,5 +32,5 @@ class Task {
         while (pq.size() < 0) {
             Task v = pr.poll();
         }
-    }
+    }*/
 }
