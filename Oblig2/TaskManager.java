@@ -87,16 +87,16 @@ class TaskManager {
 
         }
 
-        for (Task i : task) {
+        for (Task node : task) {
             int curTime = 0;
-            for (Task j : i.outEdges) {
-                if (j.earliestStart+j.time < i.earliestStart) {
-                    if (curTime < j.earliestStart+j.time) {
-                        curTime = j.earliestStart+j.time;
+            for (Task edge : node.outEdges) {
+                if (edge.earliestStart+edge.time < node.earliestStart) {
+                    if (curTime < edge.earliestStart + edge.time) {
+                        curTime = edge.earliestStart + edge.time;
                     }
                 }
             }
-            i.earliestStart = curTime;
+            node.earliestStart = curTime;
         }
 
         for (Task t : task){
