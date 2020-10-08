@@ -33,8 +33,6 @@ class TaskManager {
             }
         }
 
-        //earlyStart(realizable(tasks));
-
         Task[] sykel = realizable(tasks);
         if (sykel == null) {
             System.out.println("Grafen har en sykel");
@@ -43,6 +41,7 @@ class TaskManager {
                 System.out.println(t.name + " " + t.id);
             }
             earlyStart(sykel);
+            lateStart(sykel);
         }
     }
 
@@ -90,28 +89,50 @@ class TaskManager {
         for (Task node : task) {
             int curTime = 0;
             for (Task edge : node.outEdges) {
-                if (edge.earliestStart+edge.time < node.earliestStart) {
-                    if (curTime < edge.earliestStart + edge.time) {
-                        curTime = edge.earliestStart + edge.time;
-                    }
+                if (curTime < edge.earliestStart + edge.time) {
+                    curTime = edge.earliestStart + edge.time;
                 }
             }
             node.earliestStart = curTime;
         }
 
-        for (Task t : task){
+        /*for (Task t : task){
             System.out.println("-----------------------------");
-            System.out.println("Korteste vei fra start til " + t.id + " er: " +
+            System.out.println("Tidligste starttidspunkt for " + t.id + " er: " +
                                 t.earliestStart);
-        }
-
-        /*System.out.println("-----------------------------");
-        System.out.println("Korteste vei fra start til slutt er: " +
-                            task[task.length-1].earliestStart);*/
+        }*/
     }
 
-    /*public static void utskrift() {
+    public static void lateStart(Task[] task) {
 
-        System.out.println("Time: " + time);
-    }*/
+        for (Task v : task) {
+            if (v.outEdges.size() > 0) {
+                v.latestStart = Integer.MAX_VALUE;
+            }
+            else {
+                v.latestStart = 0;
+            }
+
+        }
+
+        for (Task node : task) {
+            int curTime = 0;
+            for (Task edge : node.outEdges) {
+                if (curTime < edge.earliestStart + edge.time) {
+                    curTime = edge.earliestStart + edge.time;
+                }
+            }
+            node.latestStart = curTime;
+        }
+
+        for (Task t : task){
+            System.out.println("-----------------------------");
+            System.out.println("Seneste starttidspunkt for " + t.id + " er: " +
+                                t.latestStart);
+        }
+    }
+
+    public static void slack(Task[] task) {
+
+    }
 }
