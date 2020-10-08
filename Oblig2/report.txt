@@ -1,0 +1,7 @@
+1. What is the time complexity of your solution? You must explain the stated complexity. If you have a different complexity for each problem, you need to discuss them separately.
+
+2. What requirements are there for the input graph in order for the project to be successfully planned? Please put the discussion in the light of graf theoretical properties.
+
+3. What kind of the graph algorithms did you use in your implementation?
+Topologisk sortering for å sortere tasks etter avhengighet til hverandre, Dijkstras Algoritme i early- og lateStart for å finne
+tidligste og seneste start for hver task.
