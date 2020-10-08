@@ -28,7 +28,7 @@ class TaskManager {
                 if (dep == 0) {
                     break;
                 }
-                tasks[dep - 1].addEdge(task);
+                task.addEdge(tasks[dep - 1]);
                 tasks[id - 1].cntPredecessors++;
             }
         }
@@ -37,14 +37,13 @@ class TaskManager {
 
         Task[] sykel = realizable(tasks);
         if (sykel == null) {
-            System.out.println("Grafen er en sykel");
+            System.out.println("Grafen har en sykel");
         } else {
             for (Task t : sykel) {
-                System.out.println(t.name + " " + t.cntPredecessors);
+                System.out.println(t.name + " " + t.id);
             }
+            earlyStart(sykel);
         }
-        earlyStart(sykel);
-
     }
 
     public static Task[] realizable(Task[] g) { //Topologisk sortering
@@ -61,10 +60,12 @@ class TaskManager {
             Task v = s.pop();
             output[i-1] = v;
             i++;
-            for (Task e : v.outEdges) {
-                e.cntPredecessors--;
-                if (e.cntPredecessors == 0) {
-                    s.push(e);
+            for (Task e : g) {
+                if (e.outEdges.contains(v)) {
+                    e.cntPredecessors--;
+                    if (e.cntPredecessors == 0) {
+                        s.push(e);
+                    }
                 }
             }
         }
@@ -77,16 +78,25 @@ class TaskManager {
     public static void earlyStart(Task[] task) {
 
         for (Task v : task) {
-            v.earliestStart = Integer.MAX_VALUE;
+            if (v.outEdges.size() > 0) {
+                v.earliestStart = Integer.MAX_VALUE;
+            }
+            else {
+                v.earliestStart = 0;
+            }
+
         }
-        task[0].earliestStart = 0;
 
         for (Task i : task) {
+            int curTime = 0;
             for (Task j : i.outEdges) {
-                if (i.earliestStart+i.time < j.earliestStart) {
-                    j.earliestStart = i.earliestStart+i.time;
+                if (j.earliestStart+j.time < i.earliestStart) {
+                    if (curTime < j.earliestStart+j.time) {
+                        curTime = j.earliestStart+j.time;
+                    }
                 }
             }
+            i.earliestStart = curTime;
         }
 
         for (Task t : task){

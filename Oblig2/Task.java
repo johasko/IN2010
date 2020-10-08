@@ -13,7 +13,7 @@ class Task {
     }
 
     public String toString() {
-        return "Id: " + id + "\nName: " + name + "\nTime requirement: " + time + "\nStaff requirement: " + staff + "\nOutEdges: " + cntPredecessors + "\n";
+        return "Id: " + id + "\nName: " + name + "\nTime requirement: " + time + "\nStaff requirement: " + staff + "\nOutEdges: " + outEdges.size() + "\ncntPredecessors: " + cntPredecessors + "\n";
     }
 
     public void addEdge(Task t) {
