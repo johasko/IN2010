@@ -1,3 +1,5 @@
+eirsae/johasko IN2010
+
 1.
 Kjøretid for realizable(): Her har vi brukt en algoritme for topologisk sortering, en form for BFS gjennomgått i forelesning, med kjøretid O(|V|+|E|). Grafens noder og kanter besøkes en gang før de legges inn i stacken, derav kjøretiden nevnt over. 
 

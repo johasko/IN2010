@@ -1,3 +1,4 @@
+eirsae/johasko IN2010
 
 1. Bruk "javac *.java" for å kompilere filene.
 2. Main-metoden finnes i TaskManager.java.
