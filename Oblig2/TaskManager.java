@@ -5,6 +5,8 @@ import java.util.*;
 
 class TaskManager {
 
+    static int longestPath = 0;
+
     public static void main(String[] args) throws IOException {
         String filename = args[0];
         Scanner in = new Scanner(new File(filename));
@@ -28,21 +30,25 @@ class TaskManager {
                 if (dep == 0) {
                     break;
                 }
-                task.addEdge(tasks[dep - 1]);
+                task.addInEdge(tasks[dep - 1]);
+                tasks[dep - 1].addOutEdge(task);
                 tasks[id - 1].cntPredecessors++;
             }
         }
 
         Task[] sykel = realizable(tasks);
-        earlyStart(sykel);
-        lateStart(sykel);
-        //slack(sykel);
+
         if (sykel == null) {
             System.out.println("Grafen har en sykel");
         } else {
+            earlyStart(sykel);
+            lateStart(sykel);
+
+            System.out.println("------- Printing all tasks -------");
             for (Task t : sykel) {
-                testPrint(t);
+                taskPrint(t);
             }
+            runProject(sykel);
 
         }
     }
@@ -62,7 +68,7 @@ class TaskManager {
             output[i-1] = v;
             i++;
             for (Task e : g) {
-                if (e.outEdges.contains(v)) {
+                if (e.inEdges.contains(v)) {
                     e.cntPredecessors--;
                     if (e.cntPredecessors == 0) {
                         s.push(e);
@@ -79,7 +85,7 @@ class TaskManager {
     public static void earlyStart(Task[] task) {
 
         for (Task v : task) {
-            if (v.outEdges.size() > 0) {
+            if (v.inEdges.size() > 0) {
                 v.earliestStart = Integer.MAX_VALUE;
             }
             else {
@@ -90,41 +96,82 @@ class TaskManager {
 
         for (Task node : task) {
             int curTime = 0;
-            for (Task edge : node.outEdges) {
+            for (Task edge : node.inEdges) {
                 if (curTime < edge.earliestStart + edge.time) {
                     curTime = edge.earliestStart + edge.time;
                 }
             }
             node.earliestStart = curTime;
-        }
-    }
-
-    public static void lateStart(Task[] task) {
-
-        for (Task t : task) {
-            t.latestStart = t.earliestStart;
-        }
-
-        for (Task node : task) {
-            int curTime = 0;
-            for (Task edge : node.outEdges) {
-                if (node.earliestStart > edge.earliestStart + edge.time) {
-                    edge.latestStart = edge.earliestStart + (node.earliestStart-
-                                                            (edge.earliestStart + edge.time));
-                }
+            if (node.earliestStart + node.time > longestPath) {
+                longestPath = node.earliestStart + node.time;
             }
         }
     }
 
-    public static void testPrint(Task t) {
+    public static void lateStart(Task[] task) {
+        for (Task node : task) {
+            node.latestStart = node.earliestStart;
+
+            int curTime = Integer.MAX_VALUE;
+            for (Task edge : node.outEdges) {
+                if (curTime > edge.earliestStart - node.time) {
+                    curTime = edge.earliestStart - node.time;
+                }
+            }
+            if (node.outEdges.size() == 0) {
+                node.latestStart = longestPath - node.time;
+            }
+            else {
+                node.latestStart = curTime;
+            }
+        }
+    }
+
+    public static void taskPrint(Task t) {
         System.out.println("ID: " + t.id);
-        System.out.println("Tid: " + t.time);
-        System.out.println("Tidligste start: " + t.earliestStart);
-        System.out.println("Tidligst fullført: " + (t.earliestStart+t.time));
-        System.out.println("Seneste start: " + t.latestStart);
-        System.out.println("Senest fullført: " + (t.latestStart+t.time));
+        System.out.println("Name: " + t.name);
+        System.out.println("Time: " + t.time);
+        System.out.println("Staff required: " + t.staff);
+        System.out.println("Earliest starttime: " + t.earliestStart);
         System.out.println("Slack: " + (t.latestStart - t.earliestStart));
-        System.out.println("Kritisk task? " + (t.latestStart - t.earliestStart == 0));
-        System.out.println("#################################");
+        if (t.outEdges.size() != 0) {
+            System.out.println("Tasks who depend on this task:\n");
+            for (Task oe : t.outEdges) {
+                System.out.println("          Id: "  + oe.id + ", "+ oe.name);
+            }
+        }
+        System.out.println("-------------------------------------------");
+    }
+
+    public static void runProject(Task[] tasks) {
+        System.out.println("\n------- Printing runtime simulation -------\n");
+
+        int currentStaff = 0;
+
+        for (int i = 0; i <= longestPath; i++) {
+            boolean check = false;
+            for (Task t : tasks) {
+                if (t.earliestStart == i) {
+                    if (!check) {
+                        System.out.println("Current time : " + i);
+                        check = true;
+                    }
+                    System.out.println("                    Starting: " + t.name);
+                    currentStaff += t.staff;
+                }
+                else if(t.earliestStart + t.time == i) {
+                    if (!check) {
+                        System.out.println("Current time : " + i);
+                        check = true;
+                    }
+                    System.out.println("                    Finished: " + t.name);
+                    currentStaff -= t.staff;
+                }
+            }
+            if (check) {
+                System.out.println("                    Current staff: " + currentStaff  + "\n");
+            }
+        }
+        System.out.println("------- Shortest completion time: " + longestPath + " -------");
     }
 }
