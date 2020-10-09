@@ -34,14 +34,16 @@ class TaskManager {
         }
 
         Task[] sykel = realizable(tasks);
+        earlyStart(sykel);
+        lateStart(sykel);
+        //slack(sykel);
         if (sykel == null) {
             System.out.println("Grafen har en sykel");
         } else {
             for (Task t : sykel) {
-                System.out.println(t.name + " " + t.id);
+                testPrint(t);
             }
-            earlyStart(sykel);
-            lateStart(sykel);
+
         }
     }
 
@@ -95,44 +97,34 @@ class TaskManager {
             }
             node.earliestStart = curTime;
         }
-
-        /*for (Task t : task){
-            System.out.println("-----------------------------");
-            System.out.println("Tidligste starttidspunkt for " + t.id + " er: " +
-                                t.earliestStart);
-        }*/
     }
 
     public static void lateStart(Task[] task) {
 
-        for (Task v : task) {
-            if (v.outEdges.size() > 0) {
-                v.latestStart = Integer.MAX_VALUE;
-            }
-            else {
-                v.latestStart = 0;
-            }
-
+        for (Task t : task) {
+            t.latestStart = t.earliestStart;
         }
 
         for (Task node : task) {
             int curTime = 0;
             for (Task edge : node.outEdges) {
-                if (curTime < edge.earliestStart + edge.time) {
-                    curTime = edge.earliestStart + edge.time;
+                if (node.earliestStart > edge.earliestStart + edge.time) {
+                    edge.latestStart = edge.earliestStart + (node.earliestStart-
+                                                            (edge.earliestStart + edge.time));
                 }
             }
-            node.latestStart = curTime;
-        }
-
-        for (Task t : task){
-            System.out.println("-----------------------------");
-            System.out.println("Seneste starttidspunkt for " + t.id + " er: " +
-                                t.latestStart);
         }
     }
 
-    public static void slack(Task[] task) {
-
+    public static void testPrint(Task t) {
+        System.out.println("ID: " + t.id);
+        System.out.println("Tid: " + t.time);
+        System.out.println("Tidligste start: " + t.earliestStart);
+        System.out.println("Tidligst fullført: " + (t.earliestStart+t.time));
+        System.out.println("Seneste start: " + t.latestStart);
+        System.out.println("Senest fullført: " + (t.latestStart+t.time));
+        System.out.println("Slack: " + (t.latestStart - t.earliestStart));
+        System.out.println("Kritisk task? " + (t.latestStart - t.earliestStart == 0));
+        System.out.println("#################################");
     }
 }
