@@ -39,7 +39,8 @@ class TaskManager {
         Task[] sykel = realizable(tasks);
 
         if (sykel == null) {
-            System.out.println("Grafen har en sykel");
+            System.out.println("This graph has a cycle!");
+
         } else {
             earlyStart(sykel);
             lateStart(sykel);
