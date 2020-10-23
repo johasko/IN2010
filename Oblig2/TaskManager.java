@@ -36,21 +36,47 @@ class TaskManager {
             }
         }
 
-        Task[] sykel = realizable(tasks);
+        Task[] project = realizable(tasks);
 
-        if (sykel == null) {
-            System.out.println("This graph has a cycle!");
+        if (project == null) {
+            System.out.println("\n------- This graph has a cycle! -------\n");
+            String c = "";
+            isCycle(tasks[0], c);
+
 
         } else {
-            earlyStart(sykel);
-            lateStart(sykel);
+            earlyStart(project);
+            lateStart(project);
 
             System.out.println("------- Printing all tasks -------");
-            for (Task t : sykel) {
+            for (Task t : project) {
                 taskPrint(t);
             }
-            runProject(sykel);
+            runProject(project);
 
+        }
+    }
+
+    public static void isCycle(Task t, String c) {
+
+        for (Task oe : t.outEdges) {
+            String one = c;
+
+            if (one.length() == 0) {
+                one += ("(Name: " + t.name + ", ID: " + t.id + ") ");
+            }
+            else {
+                one += (" --> " + "(Name: " + t.name + ", ID: " + t.id + ")");
+            }
+
+
+            if (!oe.status && !one.contains(oe.name)) {
+                oe.status = true;
+                isCycle(oe, one);
+            }
+            else if (one.contains(oe.name)) {
+                System.out.println(one + "\n");
+            }
         }
     }
 
@@ -63,7 +89,7 @@ class TaskManager {
                 s.push(t);
             }
         }
-        int i =1;
+        int i = 1;
         while (!s.empty()) {
             Task v = s.pop();
             output[i-1] = v;
@@ -80,6 +106,7 @@ class TaskManager {
         if (i > g.length) {
             return output;
         }
+
         return null;
     }
 
