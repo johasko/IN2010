@@ -62,12 +62,7 @@ class TaskManager {
         for (Task oe : t.outEdges) {
             String one = c;
 
-            if (one.length() == 0) {
-                one += ("(Name: " + t.name + ", ID: " + t.id + ")\n");
-            }
-            else {
-                one += ("(Name: " + t.name + ", ID: " + t.id + ")\n");
-            }
+            one += ("(Name: " + t.name + ", ID: " + t.id + ")\n");
 
             if (!oe.status && !one.contains(oe.name)) {
                 oe.status = true;
