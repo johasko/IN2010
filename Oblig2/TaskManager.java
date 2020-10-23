@@ -48,7 +48,7 @@ class TaskManager {
             earlyStart(project);
             lateStart(project);
 
-            System.out.println("------- Printing all tasks -------");
+            System.out.println("\n------- Printing all tasks -------");
             for (Task t : project) {
                 taskPrint(t);
             }
@@ -63,19 +63,18 @@ class TaskManager {
             String one = c;
 
             if (one.length() == 0) {
-                one += ("(Name: " + t.name + ", ID: " + t.id + ") ");
+                one += ("(Name: " + t.name + ", ID: " + t.id + ")\n");
             }
             else {
-                one += (" --> " + "(Name: " + t.name + ", ID: " + t.id + ")");
+                one += ("(Name: " + t.name + ", ID: " + t.id + ")\n");
             }
-
 
             if (!oe.status && !one.contains(oe.name)) {
                 oe.status = true;
                 isCycle(oe, one);
             }
             else if (one.contains(oe.name)) {
-                System.out.println(one + "\n");
+                System.out.println(one + "Repeat\n");
             }
         }
     }
@@ -200,6 +199,6 @@ class TaskManager {
                 System.out.println("                    Current staff: " + currentStaff  + "\n");
             }
         }
-        System.out.println("------- Shortest completion time: " + longestPath + " -------");
+        System.out.println("------- Shortest completion time: " + longestPath + " -------\n");
     }
 }
