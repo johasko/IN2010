@@ -106,45 +106,40 @@ class TaskManager {
 
     public static void earlyStart(Task[] task) {
 
-        for (Task v : task) {
-            if (v.inEdges.size() > 0) {
-                v.earliestStart = Integer.MAX_VALUE;
+        for (Task node : task) {
+            if (node.inEdges.size() == 0) {
+                node.earliestStart = 0;
             }
             else {
-                v.earliestStart = 0;
-            }
-
-        }
-
-        for (Task node : task) {
-            int curTime = 0;
-            for (Task edge : node.inEdges) {
-                if (curTime < edge.earliestStart + edge.time) {
-                    curTime = edge.earliestStart + edge.time;
+                node.earliestStart = Integer.MAX_VALUE;
+                int curTime = 0;
+                for (Task edge : node.inEdges) {
+                    if (curTime < edge.earliestStart + edge.time) {
+                        curTime = edge.earliestStart + edge.time;
+                    }
                 }
-            }
-            node.earliestStart = curTime;
-            if (node.earliestStart + node.time > longestPath) {
-                longestPath = node.earliestStart + node.time;
+                node.earliestStart = curTime;
+                if (node.earliestStart + node.time > longestPath) {
+                    longestPath = node.earliestStart + node.time;
+                }
             }
         }
     }
 
     public static void lateStart(Task[] task) {
-        for (Task node : task) {
-            node.latestStart = node.earliestStart;
 
-            int curTime = Integer.MAX_VALUE;
-            for (Task edge : node.outEdges) {
-                if (curTime > edge.earliestStart - node.time) {
-                    curTime = edge.earliestStart - node.time;
-                }
-            }
-            if (node.outEdges.size() == 0) {
-                node.latestStart = longestPath - node.time;
+        for (int i = task.length-1; i >= 0; i--) { //Gaar igjennom den reverserte sorterte lista
+            if (task[i].outEdges.size() == 0) {
+                task[i].latestStart = longestPath - task[i].time;
             }
             else {
-                node.latestStart = curTime;
+                int curTime = Integer.MAX_VALUE ;
+                for (Task edge : task[i].outEdges) {
+                    if (curTime > edge.latestStart - task[i].time) {
+                        curTime = edge.latestStart - task[i].time;
+                    }
+                }
+                task[i].latestStart = curTime;
             }
         }
     }
