@@ -1,0 +1,951 @@
+— Output from program —
+
+$ java TaskManager inputs/examplefigure.txt:
+
+------- Printing all tasks -------
+ID: 2
+Name: 2
+Time: 5
+Staff required: 2
+Earliest starttime: 0
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 3, 3
+          Id: 4, 4
+-------------------------------------------
+ID: 4
+Name: 4
+Time: 2
+Staff required: 4
+Earliest starttime: 5
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 6, 6
+-------------------------------------------
+ID: 1
+Name: 1
+Time: 3
+Staff required: 4
+Earliest starttime: 0
+Slack: 3
+Tasks who depend on this task:
+
+          Id: 3, 3
+-------------------------------------------
+ID: 3
+Name: 3
+Time: 1
+Staff required: 2
+Earliest starttime: 5
+Slack: 1
+Tasks who depend on this task:
+
+          Id: 5, 5
+          Id: 6, 6
+-------------------------------------------
+ID: 6
+Name: 6
+Time: 8
+Staff required: 4
+Earliest starttime: 7
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 7, 7
+          Id: 8, 8
+-------------------------------------------
+ID: 8
+Name: 8
+Time: 1
+Staff required: 3
+Earliest starttime: 15
+Slack: 2
+-------------------------------------------
+ID: 5
+Name: 5
+Time: 4
+Staff required: 3
+Earliest starttime: 6
+Slack: 5
+Tasks who depend on this task:
+
+          Id: 7, 7
+-------------------------------------------
+ID: 7
+Name: 7
+Time: 3
+Staff required: 2
+Earliest starttime: 15
+Slack: 0
+-------------------------------------------
+
+------- Printing runtime simulation -------
+
+Current time : 0
+                    Starting: 2
+                    Starting: 1
+                    Current staff: 6
+
+Current time : 3
+                    Finished: 1
+                    Current staff: 2
+
+Current time : 5
+                    Finished: 2
+                    Starting: 4
+                    Starting: 3
+                    Current staff: 6
+
+Current time : 6
+                    Finished: 3
+                    Starting: 5
+                    Current staff: 7
+
+Current time : 7
+                    Finished: 4
+                    Starting: 6
+                    Current staff: 7
+
+Current time : 10
+                    Finished: 5
+                    Current staff: 4
+
+Current time : 15
+                    Finished: 6
+                    Starting: 8
+                    Starting: 7
+                    Current staff: 5
+
+Current time : 16
+                    Finished: 8
+                    Current staff: 2
+
+Current time : 18
+                    Finished: 7
+                    Current staff: 0
+
+------- Shortest completion time: 18 -------
+
+———————————————————————————————————————————————————————————————————————————————
+
+$ java TaskManager inputs/buildhouse1.txt:
+
+------- Printing all tasks -------
+ID: 5
+Name: Build-foundation
+Time: 4
+Staff required: 2
+Earliest starttime: 0
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 1, Build-walls
+          Id: 6, Make-floor
+-------------------------------------------
+ID: 6
+Name: Make-floor
+Time: 2
+Staff required: 2
+Earliest starttime: 4
+Slack: 8
+Tasks who depend on this task:
+
+          Id: 7, Put-carpet-floor
+-------------------------------------------
+ID: 1
+Name: Build-walls
+Time: 4
+Staff required: 2
+Earliest starttime: 4
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 2, Build-roofs
+          Id: 3, Put-on-wallpapers
+-------------------------------------------
+ID: 2
+Name: Build-roofs
+Time: 6
+Staff required: 4
+Earliest starttime: 8
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 3, Put-on-wallpapers
+          Id: 4, Put-on-tiles
+          Id: 7, Put-carpet-floor
+-------------------------------------------
+ID: 7
+Name: Put-carpet-floor
+Time: 4
+Staff required: 2
+Earliest starttime: 14
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 8, Move-in
+-------------------------------------------
+ID: 4
+Name: Put-on-tiles
+Time: 1
+Staff required: 3
+Earliest starttime: 14
+Slack: 7
+-------------------------------------------
+ID: 3
+Name: Put-on-wallpapers
+Time: 1
+Staff required: 2
+Earliest starttime: 14
+Slack: 3
+Tasks who depend on this task:
+
+          Id: 8, Move-in
+-------------------------------------------
+ID: 8
+Name: Move-in
+Time: 4
+Staff required: 4
+Earliest starttime: 18
+Slack: 0
+-------------------------------------------
+
+------- Printing runtime simulation -------
+
+Current time : 0
+                    Starting: Build-foundation
+                    Current staff: 2
+
+Current time : 4
+                    Finished: Build-foundation
+                    Starting: Make-floor
+                    Starting: Build-walls
+                    Current staff: 4
+
+Current time : 6
+                    Finished: Make-floor
+                    Current staff: 2
+
+Current time : 8
+                    Finished: Build-walls
+                    Starting: Build-roofs
+                    Current staff: 4
+
+Current time : 14
+                    Finished: Build-roofs
+                    Starting: Put-carpet-floor
+                    Starting: Put-on-tiles
+                    Starting: Put-on-wallpapers
+                    Current staff: 7
+
+Current time : 15
+                    Finished: Put-on-tiles
+                    Finished: Put-on-wallpapers
+                    Current staff: 2
+
+Current time : 18
+                    Finished: Put-carpet-floor
+                    Starting: Move-in
+                    Current staff: 4
+
+Current time : 22
+                    Finished: Move-in
+                    Current staff: 0
+
+------- Shortest completion time: 22 -------
+
+———————————————————————————————————————————————————————————————————————————————
+
+$ java TaskManager inputs/buildhouse2.txt:
+
+------- This graph has a cycle! -------
+
+(Name: Build-walls, ID: 1)
+(Name: Build-roofs, ID: 2)
+(Name: Put-carpet-floor, ID: 7)
+(Name: Make-floor, ID: 6)
+Repeat
+
+———————————————————————————————————————————————————————————————————————————————
+
+$ java TaskManager inputs/buildgarage.txt:
+
+------- Printing all tasks -------
+ID: 1
+Name: get-paperwork
+Time: 14280
+Staff required: 1
+Earliest starttime: 0
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 2, call-contractor
+          Id: 3, clean-yard
+-------------------------------------------
+ID: 3
+Name: clean-yard
+Time: 215902
+Staff required: 3
+Earliest starttime: 14280
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 4, build-foundation
+-------------------------------------------
+ID: 2
+Name: call-contractor
+Time: 4
+Staff required: 1
+Earliest starttime: 14280
+Slack: 215898
+Tasks who depend on this task:
+
+          Id: 4, build-foundation
+-------------------------------------------
+ID: 4
+Name: build-foundation
+Time: 32134
+Staff required: 2
+Earliest starttime: 230182
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 5, build-wall-support
+          Id: 6, lay-electrical-cables
+          Id: 7, call-electrician
+-------------------------------------------
+ID: 7
+Name: call-electrician
+Time: 15
+Staff required: 1
+Earliest starttime: 262316
+Slack: 181337
+Tasks who depend on this task:
+
+          Id: 8, install-electrical-gate-opener
+-------------------------------------------
+ID: 6
+Name: lay-electrical-cables
+Time: 142
+Staff required: 1
+Earliest starttime: 262316
+Slack: 222455
+-------------------------------------------
+ID: 5
+Name: build-wall-support
+Time: 41232
+Staff required: 4
+Earliest starttime: 262316
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 8, install-electrical-gate-opener
+          Id: 9, build-walls
+          Id: 11, build-stairs
+-------------------------------------------
+ID: 11
+Name: build-stairs
+Time: 4325
+Staff required: 2
+Earliest starttime: 303548
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 12, add-2nd-floor
+-------------------------------------------
+ID: 12
+Name: add-2nd-floor
+Time: 121478
+Staff required: 4
+Earliest starttime: 307873
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 13, isolate-room
+-------------------------------------------
+ID: 9
+Name: build-walls
+Time: 6127
+Staff required: 4
+Earliest starttime: 303548
+Slack: 79671
+Tasks who depend on this task:
+
+          Id: 10, add-gate
+          Id: 13, isolate-room
+-------------------------------------------
+ID: 13
+Name: isolate-room
+Time: 1242
+Staff required: 3
+Earliest starttime: 429351
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 14, furnish-appartment
+-------------------------------------------
+ID: 14
+Name: furnish-appartment
+Time: 54320
+Staff required: 2
+Earliest starttime: 430593
+Slack: 0
+-------------------------------------------
+ID: 10
+Name: add-gate
+Time: 54322
+Staff required: 3
+Earliest starttime: 309675
+Slack: 79671
+Tasks who depend on this task:
+
+          Id: 8, install-electrical-gate-opener
+-------------------------------------------
+ID: 8
+Name: install-electrical-gate-opener
+Time: 41245
+Staff required: 2
+Earliest starttime: 363997
+Slack: 79671
+-------------------------------------------
+
+------- Printing runtime simulation -------
+
+Current time : 0
+                    Starting: get-paperwork
+                    Current staff: 1
+
+Current time : 14280
+                    Finished: get-paperwork
+                    Starting: clean-yard
+                    Starting: call-contractor
+                    Current staff: 4
+
+Current time : 14284
+                    Finished: call-contractor
+                    Current staff: 3
+
+Current time : 230182
+                    Finished: clean-yard
+                    Starting: build-foundation
+                    Current staff: 2
+
+Current time : 262316
+                    Finished: build-foundation
+                    Starting: call-electrician
+                    Starting: lay-electrical-cables
+                    Starting: build-wall-support
+                    Current staff: 6
+
+Current time : 262331
+                    Finished: call-electrician
+                    Current staff: 5
+
+Current time : 262458
+                    Finished: lay-electrical-cables
+                    Current staff: 4
+
+Current time : 303548
+                    Finished: build-wall-support
+                    Starting: build-stairs
+                    Starting: build-walls
+                    Current staff: 6
+
+Current time : 307873
+                    Finished: build-stairs
+                    Starting: add-2nd-floor
+                    Current staff: 8
+
+Current time : 309675
+                    Finished: build-walls
+                    Starting: add-gate
+                    Current staff: 7
+
+Current time : 363997
+                    Finished: add-gate
+                    Starting: install-electrical-gate-opener
+                    Current staff: 6
+
+Current time : 405242
+                    Finished: install-electrical-gate-opener
+                    Current staff: 4
+
+Current time : 429351
+                    Finished: add-2nd-floor
+                    Starting: isolate-room
+                    Current staff: 3
+
+Current time : 430593
+                    Finished: isolate-room
+                    Starting: furnish-appartment
+                    Current staff: 2
+
+Current time : 484913
+                    Finished: furnish-appartment
+                    Current staff: 0
+
+------- Shortest completion time: 484913 -------
+
+———————————————————————————————————————————————————————————————————————————————
+
+$ java TaskManager inputs/buildrail.txt:
+
+------- Printing all tasks -------
+ID: 9
+Name: Setup-barrack
+Time: 3
+Staff required: 10
+Earliest starttime: 0
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 10, Prepare-storage
+          Id: 11, Rig-ramspace-reinforcing
+          Id: 12, Build-tunnel
+          Id: 14, Build-intersection
+          Id: 16, Build-towerfoundation-1
+          Id: 17, Build-towerfoundation-2
+-------------------------------------------
+ID: 17
+Name: Build-towerfoundation-2
+Time: 45
+Staff required: 12
+Earliest starttime: 3
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 22, Encase-and-armour-tower-2
+-------------------------------------------
+ID: 16
+Name: Build-towerfoundation-1
+Time: 35
+Staff required: 12
+Earliest starttime: 3
+Slack: 11
+Tasks who depend on this task:
+
+          Id: 21, Encase-and-armour-tower-1
+-------------------------------------------
+ID: 14
+Name: Build-intersection
+Time: 25
+Staff required: 12
+Earliest starttime: 3
+Slack: 146
+Tasks who depend on this task:
+
+          Id: 15, Clean-intersection
+-------------------------------------------
+ID: 15
+Name: Clean-intersection
+Time: 20
+Staff required: 12
+Earliest starttime: 28
+Slack: 146
+Tasks who depend on this task:
+
+          Id: 8, Put-lane-tunnel-and-intersection
+-------------------------------------------
+ID: 12
+Name: Build-tunnel
+Time: 30
+Staff required: 12
+Earliest starttime: 3
+Slack: 143
+Tasks who depend on this task:
+
+          Id: 13, Clean-tunnel
+-------------------------------------------
+ID: 13
+Name: Clean-tunnel
+Time: 18
+Staff required: 12
+Earliest starttime: 33
+Slack: 143
+Tasks who depend on this task:
+
+          Id: 8, Put-lane-tunnel-and-intersection
+-------------------------------------------
+ID: 8
+Name: Put-lane-tunnel-and-intersection
+Time: 12
+Staff required: 7
+Earliest starttime: 51
+Slack: 143
+Tasks who depend on this task:
+
+          Id: 3, Install-ticketmachine
+          Id: 31, Polish-lane-on-arch
+-------------------------------------------
+ID: 3
+Name: Install-ticketmachine
+Time: 1
+Staff required: 10
+Earliest starttime: 63
+Slack: 154
+-------------------------------------------
+ID: 11
+Name: Rig-ramspace-reinforcing
+Time: 1
+Staff required: 4
+Earliest starttime: 3
+Slack: 5
+Tasks who depend on this task:
+
+          Id: 18, Make-armouring-tower-1
+          Id: 19, Make-armouring-tower-2
+          Id: 20, Make-armouring-arch
+-------------------------------------------
+ID: 20
+Name: Make-armouring-arch
+Time: 12
+Staff required: 4
+Earliest starttime: 4
+Slack: 140
+Tasks who depend on this task:
+
+          Id: 23, Encase-and-armour-arch
+-------------------------------------------
+ID: 23
+Name: Encase-and-armour-arch
+Time: 30
+Staff required: 5
+Earliest starttime: 16
+Slack: 140
+Tasks who depend on this task:
+
+          Id: 26, Cast-arch
+-------------------------------------------
+ID: 26
+Name: Cast-arch
+Time: 20
+Staff required: 7
+Earliest starttime: 46
+Slack: 140
+Tasks who depend on this task:
+
+          Id: 31, Polish-lane-on-arch
+-------------------------------------------
+ID: 19
+Name: Make-armouring-tower-2
+Time: 25
+Staff required: 4
+Earliest starttime: 4
+Slack: 19
+Tasks who depend on this task:
+
+          Id: 22, Encase-and-armour-tower-2
+-------------------------------------------
+ID: 22
+Name: Encase-and-armour-tower-2
+Time: 16
+Staff required: 5
+Earliest starttime: 48
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 25, Cast-tower-2
+-------------------------------------------
+ID: 25
+Name: Cast-tower-2
+Time: 60
+Staff required: 7
+Earliest starttime: 64
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 5, Paint-tower-2
+          Id: 27, Stretch-two-maincables
+-------------------------------------------
+ID: 5
+Name: Paint-tower-2
+Time: 12
+Staff required: 6
+Earliest starttime: 124
+Slack: 82
+-------------------------------------------
+ID: 18
+Name: Make-armouring-tower-1
+Time: 40
+Staff required: 4
+Earliest starttime: 4
+Slack: 5
+Tasks who depend on this task:
+
+          Id: 21, Encase-and-armour-tower-1
+-------------------------------------------
+ID: 21
+Name: Encase-and-armour-tower-1
+Time: 15
+Staff required: 5
+Earliest starttime: 44
+Slack: 5
+Tasks who depend on this task:
+
+          Id: 24, Cast-tower-1
+-------------------------------------------
+ID: 24
+Name: Cast-tower-1
+Time: 60
+Staff required: 7
+Earliest starttime: 59
+Slack: 5
+Tasks who depend on this task:
+
+          Id: 4, Paint-tower-1-with-arch
+          Id: 27, Stretch-two-maincables
+-------------------------------------------
+ID: 27
+Name: Stretch-two-maincables
+Time: 25
+Staff required: 10
+Earliest starttime: 124
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 28, Build-truss-1-with-rods
+          Id: 29, Build-truss-2-with-rods
+-------------------------------------------
+ID: 29
+Name: Build-truss-2-with-rods
+Time: 37
+Staff required: 10
+Earliest starttime: 149
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 1, Install-pavement
+          Id: 6, Paint-trusses
+          Id: 7, Paint-cables-and-rods
+          Id: 30, Cast-lane-on-truss
+-------------------------------------------
+ID: 28
+Name: Build-truss-1-with-rods
+Time: 30
+Staff required: 10
+Earliest starttime: 149
+Slack: 7
+Tasks who depend on this task:
+
+          Id: 1, Install-pavement
+          Id: 6, Paint-trusses
+          Id: 7, Paint-cables-and-rods
+          Id: 30, Cast-lane-on-truss
+-------------------------------------------
+ID: 30
+Name: Cast-lane-on-truss
+Time: 20
+Staff required: 7
+Earliest starttime: 186
+Slack: 0
+Tasks who depend on this task:
+
+          Id: 31, Polish-lane-on-arch
+-------------------------------------------
+ID: 31
+Name: Polish-lane-on-arch
+Time: 12
+Staff required: 7
+Earliest starttime: 206
+Slack: 0
+-------------------------------------------
+ID: 7
+Name: Paint-cables-and-rods
+Time: 18
+Staff required: 6
+Earliest starttime: 186
+Slack: 14
+-------------------------------------------
+ID: 6
+Name: Paint-trusses
+Time: 27
+Staff required: 6
+Earliest starttime: 186
+Slack: 5
+-------------------------------------------
+ID: 1
+Name: Install-pavement
+Time: 20
+Staff required: 10
+Earliest starttime: 186
+Slack: 12
+-------------------------------------------
+ID: 4
+Name: Paint-tower-1-with-arch
+Time: 15
+Staff required: 6
+Earliest starttime: 119
+Slack: 84
+-------------------------------------------
+ID: 10
+Name: Prepare-storage
+Time: 2
+Staff required: 4
+Earliest starttime: 3
+Slack: 206
+Tasks who depend on this task:
+
+          Id: 2, Install-railing
+-------------------------------------------
+ID: 2
+Name: Install-railing
+Time: 7
+Staff required: 10
+Earliest starttime: 5
+Slack: 206
+-------------------------------------------
+
+------- Printing runtime simulation -------
+
+Current time : 0
+                    Starting: Setup-barrack
+                    Current staff: 10
+
+Current time : 3
+                    Finished: Setup-barrack
+                    Starting: Build-towerfoundation-2
+                    Starting: Build-towerfoundation-1
+                    Starting: Build-intersection
+                    Starting: Build-tunnel
+                    Starting: Rig-ramspace-reinforcing
+                    Starting: Prepare-storage
+                    Current staff: 56
+
+Current time : 4
+                    Finished: Rig-ramspace-reinforcing
+                    Starting: Make-armouring-arch
+                    Starting: Make-armouring-tower-2
+                    Starting: Make-armouring-tower-1
+                    Current staff: 64
+
+Current time : 5
+                    Finished: Prepare-storage
+                    Starting: Install-railing
+                    Current staff: 70
+
+Current time : 12
+                    Finished: Install-railing
+                    Current staff: 60
+
+Current time : 16
+                    Finished: Make-armouring-arch
+                    Starting: Encase-and-armour-arch
+                    Current staff: 61
+
+Current time : 28
+                    Finished: Build-intersection
+                    Starting: Clean-intersection
+                    Current staff: 61
+
+Current time : 29
+                    Finished: Make-armouring-tower-2
+                    Current staff: 57
+
+Current time : 33
+                    Finished: Build-tunnel
+                    Starting: Clean-tunnel
+                    Current staff: 57
+
+Current time : 38
+                    Finished: Build-towerfoundation-1
+                    Current staff: 45
+
+Current time : 44
+                    Finished: Make-armouring-tower-1
+                    Starting: Encase-and-armour-tower-1
+                    Current staff: 46
+
+Current time : 46
+                    Finished: Encase-and-armour-arch
+                    Starting: Cast-arch
+                    Current staff: 48
+
+Current time : 48
+                    Finished: Build-towerfoundation-2
+                    Finished: Clean-intersection
+                    Starting: Encase-and-armour-tower-2
+                    Current staff: 29
+
+Current time : 51
+                    Finished: Clean-tunnel
+                    Starting: Put-lane-tunnel-and-intersection
+                    Current staff: 24
+
+Current time : 59
+                    Finished: Encase-and-armour-tower-1
+                    Starting: Cast-tower-1
+                    Current staff: 26
+
+Current time : 63
+                    Finished: Put-lane-tunnel-and-intersection
+                    Starting: Install-ticketmachine
+                    Current staff: 29
+
+Current time : 64
+                    Finished: Install-ticketmachine
+                    Finished: Encase-and-armour-tower-2
+                    Starting: Cast-tower-2
+                    Current staff: 21
+
+Current time : 66
+                    Finished: Cast-arch
+                    Current staff: 14
+
+Current time : 119
+                    Finished: Cast-tower-1
+                    Starting: Paint-tower-1-with-arch
+                    Current staff: 13
+
+Current time : 124
+                    Finished: Cast-tower-2
+                    Starting: Paint-tower-2
+                    Starting: Stretch-two-maincables
+                    Current staff: 22
+
+Current time : 134
+                    Finished: Paint-tower-1-with-arch
+                    Current staff: 16
+
+Current time : 136
+                    Finished: Paint-tower-2
+                    Current staff: 10
+
+Current time : 149
+                    Finished: Stretch-two-maincables
+                    Starting: Build-truss-2-with-rods
+                    Starting: Build-truss-1-with-rods
+                    Current staff: 20
+
+Current time : 179
+                    Finished: Build-truss-1-with-rods
+                    Current staff: 10
+
+Current time : 186
+                    Finished: Build-truss-2-with-rods
+                    Starting: Cast-lane-on-truss
+                    Starting: Paint-cables-and-rods
+                    Starting: Paint-trusses
+                    Starting: Install-pavement
+                    Current staff: 29
+
+Current time : 204
+                    Finished: Paint-cables-and-rods
+                    Current staff: 23
+
+Current time : 206
+                    Finished: Cast-lane-on-truss
+                    Starting: Polish-lane-on-arch
+                    Finished: Install-pavement
+                    Current staff: 13
+
+Current time : 213
+                    Finished: Paint-trusses
+                    Current staff: 7
+
+Current time : 218
+                    Finished: Polish-lane-on-arch
+                    Current staff: 0
+
+------- Shortest completion time: 218 -------
