@@ -10,7 +10,13 @@ class Insertion extends Sorter {
         //
         // Alternatively, you can "manually" increment the fields `comparisons'
         // and `swaps' at your own leisure.
-
+        for (int i = 1; i < n-1; i++) {
+            int j = i;
+            while (j > 0 && gt(A[j-1], A[j])) {
+                swap(j-1, j);
+                j--;
+            }
+        }
     }
 
     String algorithmName() {
