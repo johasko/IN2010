@@ -1,22 +1,16 @@
 class Heap extends Sorter {
 
     void sort() {
-        heapSort();
-    }
-
-    void heapSort() {
-        buildMaxHeap();
+        //buildMaxHeap
+        for (int i = n/2; i >= 0; i--) {
+            bubbleDown(i, n);
+        }
         for (int i = n-1; i >= 0; i--) {
             swap(0, i);
             bubbleDown(0,i);
         }
     }
 
-    void buildMaxHeap() {
-        for (int i = n/2; i >= 0; i--) {
-            bubbleDown(i, n);
-        }
-    }
 
     void bubbleDown(int i, int n) {
         int largest = i;
