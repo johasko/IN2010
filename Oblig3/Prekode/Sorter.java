@@ -2,9 +2,9 @@ import java.util.Arrays;
 
 abstract class Sorter {
     // Keep copy of the original array
-    int original[];
+    int[] original;
     // The array which is to be sorted
-    int A[];
+    int[] A;
     // The number of elements of A
     int n = 0;
     // Counters for comparisons and swaps
