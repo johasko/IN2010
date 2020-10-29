@@ -9,9 +9,9 @@ class Oblig3Runner {
     // The student can adjust these parameters to conduct their experiments
 
     // Put the sorting algorithms under test for part 1 here
-    static final Sorter[] ALGS1 = { new Insertion(), new Quick() };
+    static final Sorter[] ALGS1 = { new Insertion(), new Quick(), new Bubble(), new Heap() };
     // Put the sorting algorithms under test for part 2 here
-    static final Sorter[] ALGS2 = { new Insertion(), new Quick() };
+    static final Sorter[] ALGS2 = { new Insertion(), new Quick(), new Bubble(), new Heap() };
     // Time limit for a single sorting in milliseconds
     static final long TIME_LIMIT_MS = 100;
     // How much n grows each iteration
