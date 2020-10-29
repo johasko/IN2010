@@ -30,7 +30,7 @@ class Quick extends Sorter {
     }
 
     int part(int low, int high) {
-        int p = (int)(Math.random() * (high - low + 1) + low);
+        /*int p = (int)(Math.random() * (high - low + 1) + low);
         swap(p, high);
 
         int pivot = A[high];
@@ -53,7 +53,26 @@ class Quick extends Sorter {
             }
         }
         swap(left, high);
-        return left;
+        return left;*/
+
+        int pivot = A[A.length-1];
+        int i = (low-1);
+
+        for (int j = low; j < high; j++) {
+            if (A[j] <= pivot) {
+                i++;
+
+                int swapTemp = A[i];
+                A[i] = A[j];
+                A[j] = swapTemp;
+            }
+        }
+
+        int swapTemp = A[i+1];
+        A[i+1] = A[A.length-1];
+        A[A.length-1] = swapTemp;
+
+        return i+1;
     }
 
 
