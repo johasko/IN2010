@@ -17,7 +17,7 @@ class Quick extends Sorter {
     }
 
     int part(int low, int high) {
-        int p = (int)(Math.random() * (high - low + 1) + low);
+        int p = A.length/2;
         swap(p, high);
 
         int pivot = A[high];
